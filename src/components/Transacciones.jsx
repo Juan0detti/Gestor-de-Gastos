@@ -20,7 +20,6 @@ export default function Transacciones() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const [mostrarModalEtiquetas, setMostrarModalEtiquetas] = useState(false);
-  const [nuevaEtiquetaNombre, setNuevaEtiquetaNombre] = useState('');
   const [showCrearEtiqueta, setShowCrearEtiqueta] = useState(false);
   const [nuevaEtiqueta, setNuevaEtiqueta] = useState('');
 
@@ -69,8 +68,7 @@ export default function Transacciones() {
   }, [etiquetas, isLoaded]);
 
   const handleGuardar = () => {
-    set
-    const { date, amount, etiquetas: etiquetasSeleccionadas, descripcion, tipo } = formData;
+    let { date, amount, etiquetas: etiquetasSeleccionadas, descripcion, tipo } = formData;
 
     if (!date || !amount) {
       setCamposIncompletos(true);
