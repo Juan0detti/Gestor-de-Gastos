@@ -1,0 +1,43 @@
+#root {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+  width: 100%;
+}
+
+.itemObjetivo {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
+
+.datosObjetivo {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.datosObjetivo div {
+  display: flex;
+  flex-direction: column;
+  min-width: 100px;
+}
+
+.campoLabel {
+  font-weight: bold;
+  font-size: 0.85em;
+  color: #555;
+  margin-bottom: 2px;
+}
+
+.botonesItem {
+  display: flex;
+  gap: 5px;
+  min-width: 100px;
+  align-items: flex-end;
+}

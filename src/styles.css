@@ -1,0 +1,228 @@
+.container {
+  flex: 1;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  padding: 20px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+nav {
+  padding: 1%;
+  background-color: #fff;
+  border-bottom: solid black;
+}
+
+nav > ul  {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  align-items: center;
+}
+
+.barra {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+
+.barra h1 {
+  margin: 0;
+}
+
+.barra button {
+  padding: 8px 15px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.barra button:hover {
+  background-color: #218838;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContenido {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 90%;
+  max-width: 400px;
+  margin: auto;
+}
+
+input, option {
+  width: 100%;
+  padding: 5px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+}
+
+.error {
+  border: 1px solid red;
+  border-radius: 5px;
+  background-color: #ffcccc;
+  color: red;
+  padding: 4px;
+  font-size: 0.9em;
+  margin-bottom: 10px;
+}
+
+.botones {
+  display: flex;
+  justify-content: space-between;
+}
+
+.botones button {
+  padding: 8px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.botones button:hover {
+  background-color: #0056b3;
+}
+
+.lista ul {
+  list-style: none;
+  padding: 0;
+}
+.lista li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.lista li:hover {
+  background-color: #f1f1f1;
+}
+
+.lista .botonesItem {
+  display: flex;
+}
+.lista .botonesItem button {
+  margin-left: 5px;
+  padding: 5px 10px;
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.lista .botonesItem button:hover {
+  background-color: #e64a19;
+}
+
+.etiquetas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.etiqueta {
+  background-color: #e0e0e0;
+  color: #8c8c8c;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+.etiqueta.seleccionada {
+  background-color: #a0e0a0;
+}
+.etiqueta.gestionar {
+  color: #9c9c9c;
+  margin-top: 10px;
+  padding: 5px 10px;
+  font-weight: bold;
+}
+
+.filaCrearEtiqueta {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.modalContenido input {
+  margin-top: 10px;
+  padding: 5px;
+  text-align: center;
+}
+
+.modal-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 1rem;
+  color: white;
+}
+
+.modalEtiquetas {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.filaBotones {
+  display: flex;
+  justify-content: space-between;
+}
+
+.IrTransaccionesProgramadas {
+  font-size: 0.875rem;        
+  padding: 0.25rem 0.75rem;   
+  border-radius: 0.375rem;    
+  background-color: #acb1bd;  
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+.IrTransaccionesProgramadas:hover {
+  background-color: #888d9c; 
+}
+
+.FiltrarAñadir  {
+  display: flex;
+  gap: 20px;
+}
+.cancelar {
+  margin-left: 5px;
+  padding: 7.5px 10px;
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  max-width: 200px;
+}
+.editarBoton  {
+  background-color: #acb1bd;
+}
