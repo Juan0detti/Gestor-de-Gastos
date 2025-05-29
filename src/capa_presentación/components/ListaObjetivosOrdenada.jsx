@@ -8,7 +8,6 @@ export default function ListaObjetivosOrdenada({ objetivos }) {
 
   return (
     <div className="lista-objetivos">
-      <h2>Objetivos ordenados por fecha límite</h2>
       <ul>
         {objetivos.map(goal => (
           <li key={goal.id} className="objetivo-item">

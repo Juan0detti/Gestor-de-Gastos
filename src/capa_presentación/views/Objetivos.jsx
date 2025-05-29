@@ -11,7 +11,6 @@ export default function Objetivos() {
   const [validationErrors, setValidationErrors] = useState({ date: '', amount: '', name: '' });
   const [objetivos, setObjetivos] = useState([]);
 
-  // Función para cargar y ordenar objetivos
   const cargarObjetivos = () => {
     const goals = getGoals();
     const ordenados = [...goals].sort((a, b) => new Date(a.date) - new Date(b.date));
@@ -31,7 +30,6 @@ export default function Objetivos() {
     const errores = DataGoalValidation(formData.name, formData.date, formData.amount);
     setValidationErrors(errores);
 
-    // Si no hay errores, agrega objetivo y recarga lista
     if (!errores.date && !errores.amount && !errores.name) {
       addGoal(
         formData.name,
@@ -57,7 +55,7 @@ export default function Objetivos() {
       </div>
 
       <div className="barra">
-        <h1>Transacciones</h1>
+        <h1>Objetivos</h1>
         <div className='FiltrarAñadir'>
           <button onClick={() => { }}>Filtrar</button> <button onClick={() => setShowModalRegistrar(true)}>Registrar</button>
         </div>

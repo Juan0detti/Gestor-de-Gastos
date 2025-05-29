@@ -1,28 +1,10 @@
-import React from 'react';
-import { isToday, isYesterday, isSameWeek, startOfWeek, parseISO, format } from 'date-fns';
-import { es } from 'date-fns/locale';
-import './components_styles/TransaccionesAgrupadasPorFechas.css';
-
-function getLabelForDate(fecha) {
-  if (isToday(fecha)) return 'Hoy';
-  if (isYesterday(fecha)) return 'Ayer';
-
-  const semanaActual = startOfWeek(new Date(), { weekStartsOn: 1 });
-  const semanaTransaccion = startOfWeek(fecha, { weekStartsOn: 1 });
-
-  if (isSameWeek(fecha, new Date(), { weekStartsOn: 1 })) return 'Esta semana';
-  if (isSameWeek(fecha, new Date(Date.now() - 7 * 24 * 60 * 60 * 1000), { weekStartsOn: 1 })) return 'Semana anterior';
-
-  return format(fecha, "dd 'de' MMMM yyyy", { locale: es });
-}
-
 export const TransaccionesAgrupadasPorFecha = ({ transactions, handleEditar, handleEliminar }) => {
   const grouped = {};
 
   transactions.forEach(tx => {
     if (!tx?.date) {
       console.warn('Transacción sin fecha válida:', tx);
-      return; // Ignorar si no hay fecha válida
+      return;
     }
 
     let dateObj;
@@ -38,39 +20,43 @@ export const TransaccionesAgrupadasPorFecha = ({ transactions, handleEditar, han
     grouped[label].push(tx);
   });
 
+  const hayTransacciones = Object.keys(grouped).length > 0;
+
   return (
     <div className="transacciones-agrupadas">
-      {Object.entries(grouped).map(([label, txs]) => (
-        <div key={label}>
-          <h3>{label}</h3>
-          <ul className="lista-transacciones">
-            {txs.map((item, idx) => (
-              <li key={idx} className="card-transaccion">
-                <div className="info">
-                  <strong>Monto:</strong> ${item.amount} <br />
-                  <strong>Tipo:</strong> {item.type} <br />
-                  {item.description && (
-                    <>
-                      <strong>Descripción:</strong> {item.description} <br />
-                    </>
-                  )}
-                  {item.labels && item.labels.length > 0 && (
-                    <>
-                      <strong>Etiquetas:</strong> {item.labels.join(', ')}
-                    </>
-                  )}
-                </div>
-                <div className="botonesItem">
-                  <button onClick={() => handleEditar?.(item.id)} className="editarBoton">Editar</button>
-                  <button onClick={() => handleEliminar?.(item.id)} className="eliminarBoton">Eliminar</button>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
+      {!hayTransacciones ? (
+        <p className="mensaje-sin-transacciones">No hay transacciones registradas</p>
+      ) : (
+        Object.entries(grouped).map(([label, txs]) => (
+          <div key={label}>
+            <h3>{label}</h3>
+            <ul className="lista-transacciones">
+              {txs.map((item, idx) => (
+                <li key={idx} className="card-transaccion">
+                  <div className="info">
+                    <strong>Monto:</strong> ${item.amount} <br />
+                    <strong>Tipo:</strong> {item.type} <br />
+                    {item.description && (
+                      <>
+                        <strong>Descripción:</strong> {item.description} <br />
+                      </>
+                    )}
+                    {item.labels && item.labels.length > 0 && (
+                      <>
+                        <strong>Etiquetas:</strong> {item.labels.join(', ')}
+                      </>
+                    )}
+                  </div>
+                  <div className="botonesItem">
+                    <button onClick={() => handleEditar?.(item.id)} className="editarBoton">Editar</button>
+                    <button onClick={() => handleEliminar?.(item.id)} className="eliminarBoton">Eliminar</button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      )}
     </div>
   );
 };
-
-export default TransaccionesAgrupadasPorFecha;
