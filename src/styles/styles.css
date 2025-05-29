@@ -46,27 +46,6 @@ nav > ul  {
   background-color: #218838;
 }
 
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.4);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modalContenido {
-  background: white;
-  padding: 20px;
-  border-radius: 5px;
-  width: 90%;
-  max-width: 400px;
-  margin: auto;
-}
-
 input, option {
   width: 100%;
   padding: 5px;
@@ -168,26 +147,6 @@ input, option {
   justify-content: center;
   gap: 0.5rem;
   align-items: center;
-}
-
-.modalContenido input {
-  margin-top: 10px;
-  padding: 5px;
-  text-align: center;
-}
-
-.modal-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  margin-top: 1rem;
-  color: white;
-}
-
-.modalEtiquetas {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 .filaBotones {

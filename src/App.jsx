@@ -1,10 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import Objetivos from './components/Objetivos';
-import Transacciones from './components/Transacciones';
-import TransaccionesProgramadas from "./components/transaccionesProgramadas";
-import './index.css';
-import PagPr from './components/PagPrincipal';
+import Objetivos from './capa_presentación/views/Objetivos';
+import Transacciones from './capa_presentación/views/Transacciones';
+import TransaccionesProgramadas from "./capa_presentación/views/TransaccionesProgramadas";
+import PagPr from './capa_presentación/views/PagPrincipal';
+import './styles/index.css';
+
 
 function App() {
   return (
