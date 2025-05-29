@@ -23,11 +23,19 @@ Accedé a la presentación de la documentación de la primera iteración desde e
 
 El **Gestor de Gastos** es una aplicación que permite al usuario:
 
-- Registrar transacciones con etiquetas y descripciones.
-- Definir y visualizar objetivos de ahorro.
-- Programar transacciones futuras y confirmar su ejecución.
-- Aplicar filtros para organizar las finanzas.
-- Hacer respaldo de datos y mantener persistencia local.
+- El sistema debe poder registrar tanto gastos como ingresos(una transacción) del usuario.
+- El sistema debe permitir editar una transacción registrada.
+- El sistema debe permitir eliminar una transacción registrada.
+- El sistema debe permitir al usuario registrar sus objetivos financieros para un determinado periodo de tiempo.
+- El sistema debe permitir editar un objetivo financiero registrado.
+- El sistema debe permitir eliminar un  objetivo financiero registrado.
+- El sistema debe mostrar el progreso en el cumplimiento de un objetivo financiero.
+- El sistema debe permitir al usuario programar una posible transacción.
+- El sistema debe permitir al usuario confirmar la realización de una transacción programada.
+- El sistema debe permitir editar una transacción programada registrada.
+- El sistema debe permitir eliminar una transacción programada registrada.
+- El sistema debe permitir crear una etiqueta personalizada.
+- El sistema debe mostrar el saldo actual del usuario.
 
 ---
 
