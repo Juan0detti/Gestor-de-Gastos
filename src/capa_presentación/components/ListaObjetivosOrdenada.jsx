@@ -1,22 +1,29 @@
 import React from 'react';
-import './components_styles/ListaObjetivosOrdenada.css';
+import ObjetivoCard from './ObjetivosCard';
 
-export default function ListaObjetivosOrdenada({ objetivos }) {
+export default function ListaObjetivosOrdenada({ objetivos, onEditar, onEliminar, onVer }) {
   if (!objetivos || objetivos.length === 0) {
     return <p>No hay objetivos registrados.</p>;
   }
 
   return (
-    <div className="lista-objetivos">
-      <ul>
-        {objetivos.map(goal => (
-          <li key={goal.id} className="objetivo-item">
-            <strong>{goal.name}</strong><br />
-            Fecha límite: {goal.date}<br />
-            Monto: ${parseFloat(goal.amount).toFixed(2)}
-          </li>
-        ))}
-      </ul>
+    <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      {objetivos.map(objetivo => (
+        <>
+        {console.log(objetivo)}
+        
+        <ObjetivoCard
+          key={objetivo.id}
+          objetivo={objetivo}
+          onEditar={(id) => {
+            const objetivoSeleccionado = objetivos.find(g => g.id === id);
+            if (objetivoSeleccionado) onEditar(objetivoSeleccionado);
+          }}
+          onEliminar={onEliminar}
+          onVer={/*onVer*/console.log(objetivo)}
+        />
+        </>
+      ))}
     </div>
   );
 }

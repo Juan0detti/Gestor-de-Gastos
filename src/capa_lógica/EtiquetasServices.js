@@ -1,44 +1,50 @@
 import { saveLabels, getLabels } from "../capa_persistencia/EtiquetasStorage";
 import { v4 as uuidv4 } from "uuid";
 
-export function DataLabelValidation(name)    {
+export function DataLabelValidation(label) {
     const errors = {};
 
-    if (name == '') errors.name = "El nombre no pude estar vacio";
+    if (!label.nombre || label.nombre.trim() === '') {
+        errors.nombre = "El nombre no puede estar vacío";
+    }
+
+    if (label.tipo !== 'Gasto' && label.tipo !== 'Ingreso') {
+        errors.tipo = "El tipo debe ser 'Gasto' o 'Ingreso'";
+    }
 
     return errors;
 }
 
-export function addLabel(name) {
-
+export function addLabel(nombre, tipo) {
     const newLabel = {
-    id: uuidv4(),
-    name: name,
-    frequency: 0
-  };
+        id: uuidv4(),
+        nombre: nombre,
+        tipo: tipo,
+        frequencia: 0
+    };
 
-  const currentLabels = getLabels();
-  const updatedTLabels = [...currentLabels, newLabel];
-  saveLabels(updatedTLabels);
+    const currentLabels = getLabels();
+    const updatedLabels = [...currentLabels, newLabel];
+    saveLabels(updatedLabels);
 
-  return newLabel;
+    return newLabel;
 }
 
-export function editLabels(id) {
-  const etiquetas = getLabels();
+export function editLabel(id, nuevoNombre, nuevoTipo) {
+    const etiquetas = getLabels();
 
-  const etiquetasActualizadas = etiquetas.map((etiqueta) => {
-    if (etiqueta.id === id) {
-      return {
-        ...etiqueta,
-        name: etiqueta.name,
-        frequency: parseInt(etiqueta.frequency-1),
-      };
-    }
-    return etiqueta;
-  });
+    const etiquetasActualizadas = etiquetas.map((etiqueta) => {
+        if (etiqueta.id === id) {
+            return {
+                ...etiqueta,
+                nombre: nuevoNombre ?? etiqueta.nombre,
+                tipo: nuevoTipo ?? etiqueta.tipo,
+            };
+        }
+        return etiqueta;
+    });
 
-  saveLabels(transaccionesActualizadas);
+    saveLabels(etiquetasActualizadas);
 }
 
 export function orderLabels() {

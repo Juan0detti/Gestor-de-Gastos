@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { useSaldo } from '../Service/useSaldo';
+// import { useSaldo } from '../Service/useSaldo';
+import { getBalance } from '../../capa_persistencia/SaldoStorage'
 
-export default function PanelSaldo({ objetivos = objetivosEjemplo }) {
-  const { valor } = useSaldo();
+export default function PanelSaldo({ objetivos = [] }) {
+  //const { valor } = useSaldo();
+  const valor = getBalance().getMontoTotal();
   const [mostrarDetalle, setMostrarDetalle] = useState(false);
 
   const totalReservado = objetivos.reduce((acc, obj) => acc + obj.monto, 0);

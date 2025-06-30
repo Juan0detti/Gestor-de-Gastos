@@ -5,21 +5,20 @@ import Transacciones from './capa_presentación/views/Transacciones';
 import TransaccionesProgramadas from "./capa_presentación/views/TransaccionesProgramadas";
 import PagPr from './capa_presentación/views/PagPrincipal';
 import './styles/index.css';
+import { Login } from './capa_presentación/views/Login';
+import { Register } from './capa_presentación/views/Register';
+import Ahorros from './capa_presentación/views/Ahorros';
 
 
 function App() {
   return (
     <Router>
       <div className="app">
-        <nav>
-          <ul>
-            <li><Link to="/objetivos">Objetivos</Link></li>
-            <li><Link to="/transacciones">Transacciones</Link></li>
-            <li><Link to="/transaccionesProgramadas">Transacciones Programadas</Link></li>
-          </ul>
-        </nav>
         <Routes>
-          <Route path='/' element={<PagPr />}/>
+          <Route path='/register' element={<Register />}></Route>
+          <Route path='/' element={<Login />}></Route>
+          <Route path='/dashboard' element={<PagPr />}/>
+          <Route path='/ahorros' element={<Ahorros />} />
           <Route path="/objetivos" element={<Objetivos />} />
           <Route path="/transacciones" element={<Transacciones />} />
           <Route path="/transaccionesProgramadas" element={<TransaccionesProgramadas />} />

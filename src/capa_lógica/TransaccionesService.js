@@ -1,5 +1,23 @@
+import { getBalance } from "../capa_persistencia/SaldoStorage";
 import { getTransations, saveTransations } from "../capa_persistencia/TransaccionesStorage";
+import {actualizarSaldoPorTransaccion} from '../capa_lógica/SaldoService'
 import { v4 as uuidv4 } from "uuid";
+
+function soloFecha(fechaString) {
+  return fechaString.split('T')[0]; // Extrae solo la parte de la fecha
+}
+
+class Transaction {
+  constructor ( nombre, monto, fecha, tipo, descripcion, etiquetas ) {
+    this.id = uuidv4();
+    this.fecha = fecha;
+    this.nombre = nombre;
+    this.monto = monto;
+    this.tipo = tipo;
+    this.descripcion = descripcion;
+    this.etiquetas = etiquetas;
+  }
+}
 
 export function DataTransationValidation(date, amount)    {
     const errors = {};
@@ -18,37 +36,36 @@ export function DataTransationValidation(date, amount)    {
     return errors;
 }
 
-export function addTransation(date, amount, type, description, labels) {
+export function addTransation(nombre, monto, fecha, tipo, descripcion, etiquetas) {
 
-    const newTransation = {
-    id: uuidv4(),
-    date: date,
-    amount: amount,
-    type: type,
-    description: description,
-    labels: labels
-  };
+    const newTransation = new Transaction (nombre, monto, fecha, tipo, descripcion, etiquetas);
 
   const currentTransation = getTransations();
   const updatedTransation = [...currentTransation, newTransation];
   saveTransations(updatedTransation);
 
+  const saldo = getBalance();
+
+  actualizarSaldoPorTransaccion(newTransation.id, null, 'creacion');
+
   return newTransation;
 }
 
-export function filterTransation(date, amount, type, labels) {
+export function filterTransation(fecha_inicio, fecha_fin, monto, tipo, etiquetas) {
   const allTransactions = getTransations();
 
   return allTransactions.filter((transaction) => {
+    const fecha = soloFecha(transaction.fecha);
 
-    if (date && date != 'sin seleccionar' && transaction.date !== date) return false;
+    if (fecha_inicio && fecha_inicio !== 'sin seleccionar' && fecha < fecha_inicio) return false;
+    if (fecha_fin && fecha_fin !== 'sin seleccionar' && fecha > fecha_fin) return false;
 
-    if (amount && amount != 'sin seleccionar' && parseFloat(transaction.amount) !== parseFloat(amount)) return false;
+    if (monto && monto !== 'sin seleccionar' && parseFloat(transaction.monto) !== parseFloat(monto)) return false;
 
-    if (type && type !== "sin-seleccionar" && transaction.type !== type) return false;
+    if (tipo && tipo !== "sin-seleccionar" && transaction.tipo !== tipo) return false;
 
-    if (labels && labels.length > 0) {
-      const contieneTodas = labels.every(label => transaction.labels?.includes(label));
+    if (etiquetas && etiquetas.length > 0) {
+      const contieneTodas = etiquetas.every(etiqueta => transaction.etiquetas?.includes(etiqueta));
       if (!contieneTodas) return false;
     }
 
@@ -58,27 +75,40 @@ export function filterTransation(date, amount, type, labels) {
 
 export function editTransation(id, nuevosDatos) {
   const transacciones = getTransations();
+  let montoViejo;
+  let tipoViejo;
 
   const transaccionesActualizadas = transacciones.map((trans) => {
     if (trans.id === id) {
+      montoViejo = trans.monto;
+      tipoViejo = trans.tipo;
       return {
         ...trans,
-        date: nuevosDatos.date,
-        amount: parseFloat(nuevosDatos.amount),
-        type: nuevosDatos.type,
-        description: nuevosDatos.description,
-        labels: nuevosDatos.labels
+        nombre: nuevosDatos.nombre,
+        fecha: nuevosDatos.fecha,
+        monto: nuevosDatos.monto,
+        tipo: nuevosDatos.tipo,
+        descripcion: nuevosDatos.descripcion,
+        etiquetas: nuevosDatos.etiquetas
       };
+
     }
     return trans;
   });
-
   saveTransations(transaccionesActualizadas);
+
+  if (tipoViejo === nuevosDatos.tipo) {
+    actualizarSaldoPorTransaccion(id, montoViejo, 'edicion');
+  } else {
+    actualizarSaldoPorTransaccion(id, -montoViejo, 'edicion');
+  }
 }
 
 export function eliminateTransaction(id) {
     const currentTransation = getTransations();
     const updatedTransation = [...currentTransation.filter((transation)=>transation.id!=id)];
+    
+    actualizarSaldoPorTransaccion(id, null, 'eliminacion');
     saveTransations(updatedTransation);
 
     return updatedTransation;

@@ -1,29 +1,50 @@
-class Saldo {
-  constructor() {
-    if (Saldo.instance) return Saldo.instance;
+const STORAGE_KEY = "saldo";
 
-    this.valor = 0;
-    Saldo.instance = this;
+export class Saldo {
+  constructor () {
+    this.montoLibre = 0;
+    this.montoAhorrado = {monto:0, ahorros:[]};
+    this.total = 0;
   }
 
-  obtener() {
-    return this.valor;
+  setMontoLibre(newMontoLibre) {
+    this.montoLibre = newMontoLibre;
   }
 
-  sumar(monto) {
-    this.valor += monto;
+  getMontoLibre() {
+    return this.montoLibre;
   }
 
-  restar(monto) {
-    this.valor -= monto;
+  setMontoAhorrado(newMontoAhorrado) {
+    this.montoAhorrado = newMontoAhorrado;
   }
 
-  reiniciar() {
-    this.valor = 0;
+  getMontoAhorrado() {
+    return this.montoAhorrado;
+  }
+
+  setMontoTotal(newTotal) {
+    this.total = newTotal;
+  }
+
+  getMontoTotal() {
+    return this.total;
   }
 }
 
-const saldoGlobal = new Saldo();
-Object.freeze(saldoGlobal);
+export function getBalance() {
+  const data = JSON.parse(localStorage.getItem(STORAGE_KEY));
+  if (!data) {
+    return new Saldo(); // si no hay saldo guardado, crea uno nuevo
+  }
 
-export default saldoGlobal;
+  const saldo = new Saldo();
+  saldo.setMontoLibre(data.montoLibre);
+  saldo.setMontoAhorrado(data.montoAhorrado);
+  saldo.setMontoTotal(data.total);
+  return saldo;
+}
+
+export function saveBalance(balance) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(balance));
+}
