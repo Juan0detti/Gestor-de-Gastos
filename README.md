@@ -1,7 +1,59 @@
-**Trabajo Practico Diseño de Sistemas - Gestor de Gastos -- Juan Ignacio Odetti**
+# Trabajo Práctico - Diseño de Sistemas  
+## Gestor de Gastos
 
-  Enlace a la presentación de la documentación de la primera iteración:
-  https://docs.google.com/document/d/1PvOxB9db7NhXw5bTLcpajbPDTn827sDfSTMWfMq_wX0/edit?usp=sharing
+**Autor:** Juan Ignacio Odetti
 
-  Presentación de la documentación de la segunda iteración:
-  [Documentación 2da Iteración TP Diseño.pdf](https://github.com/user-attachments/files/20512142/Documentacion.2da.Iteracion.TP.Diseno.pdf)
+Este repositorio contiene el desarrollo del Trabajo Práctico para la materia **Diseño de Sistemas**, cuyo objetivo es implementar una aplicación de gestión de gastos personales.
+
+---
+
+## 📄 Documentación
+
+### Primera Iteración  
+Accedé a la presentación de la documentación de la primera iteración desde el siguiente enlace:  
+🔗 [Documentación 1ra Iteración](https://docs.google.com/document/d/1PvOxB9db7NhXw5bTLcpajbPDTn827sDfSTMWfMq_wX0/edit?usp=sharing)
+
+### Segunda Iteración  
+📄 Documentación disponible en el archivo: 
+(https://github.com/user-attachments/files/20512142/Documentacion.2da.Iteracion.TP.Diseno.pdf)
+
+---
+
+## 📌 Descripción General
+
+El **Gestor de Gastos** es una aplicación que permite al usuario:
+
+- El sistema debe poder registrar tanto gastos como ingresos(una transacción) del usuario.
+- El sistema debe permitir editar una transacción registrada.
+- El sistema debe permitir eliminar una transacción registrada.
+- El sistema debe permitir al usuario registrar sus objetivos financieros para un determinado periodo de tiempo.
+- El sistema debe permitir editar un objetivo financiero registrado.
+- El sistema debe permitir eliminar un  objetivo financiero registrado.
+- El sistema debe mostrar el progreso en el cumplimiento de un objetivo financiero.
+- El sistema debe permitir al usuario programar una posible transacción.
+- El sistema debe permitir al usuario confirmar la realización de una transacción programada.
+- El sistema debe permitir editar una transacción programada registrada.
+- El sistema debe permitir eliminar una transacción programada registrada.
+- El sistema debe permitir crear una etiqueta personalizada.
+- El sistema debe mostrar el saldo actual del usuario.
+
+---
+
+## 🛠️ Tecnologías utilizadas
+
+- React
+- JavaScript
+- HTML/CSS
+- LocalStorage (persistencia local)
+- (Agregá otras tecnologías si las usás, como Tailwind, Vite, etc.)
+
+---
+
+## 🚧 Estado del Proyecto
+
+✅ Iteración 1 — completada  
+🟡 Iteración 2 — completada
+
+---
+
+> Este proyecto fue desarrollado con fines académicos en el marco de la materia Diseño de Sistemas.
