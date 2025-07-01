@@ -20,6 +20,8 @@ Accedé a la presentación de la documentación de la primera iteración desde e
 ### Tercera Iteración
 📄 Documentación disponible en el archivo:
 [Documentación 3era Iteración.pdf](https://github.com/user-attachments/files/20981120/Documentacion.3era.Iteracion.pdf)
+- Documentación API Testing: [API Testing.pdf](https://github.com/user-attachments/files/20989486/API.Testing.pdf)
+
 ---
 
 ## 📌 Descripción General
