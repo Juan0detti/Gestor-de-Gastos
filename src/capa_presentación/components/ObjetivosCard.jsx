@@ -1,5 +1,12 @@
-import React from 'react';
-import { BadgeCheck, PiggyBank, TrendingDown, Eye, Pencil, Trash2 } from "lucide-react";
+import React from "react";
+import {
+  BadgeCheck,
+  PiggyBank,
+  TrendingDown,
+  Eye,
+  Pencil,
+  Trash2,
+} from "lucide-react";
 
 const ObjetivoCard = ({ objetivo, onEditar, onEliminar, onVer }) => {
   const {
@@ -10,11 +17,11 @@ const ObjetivoCard = ({ objetivo, onEditar, onEliminar, onVer }) => {
     monto_actual,
     monto_objetivo,
     fecha_inicio,
-    fecha_fin
+    fecha_fin,
   } = objetivo;
 
-  console.log('objetivo:')
-  console.log(objetivo)
+  console.log("objetivo:");
+  console.log(objetivo);
 
   // Calcular progreso
   let progreso = 0;
@@ -28,18 +35,18 @@ const ObjetivoCard = ({ objetivo, onEditar, onEliminar, onVer }) => {
     saldo_minimo: {
       icon: <BadgeCheck className="text-green-600" />,
       color: monto_actual >= monto_objetivo ? "text-green-700" : "text-red-600",
-      label: "Saldo mínimo"
+      label: "Saldo mínimo",
     },
     gasto_acumulado: {
       icon: <TrendingDown className="text-yellow-600" />,
       color: monto_actual > monto_objetivo ? "text-red-600" : "text-yellow-700",
-      label: "Gasto acumulado"
+      label: "Gasto acumulado",
     },
     ahorro: {
       icon: <PiggyBank className="text-blue-600" />,
       color: "text-blue-700",
-      label: "Objetivo de ahorro"
-    }
+      label: "Objetivo de ahorro",
+    },
   };
 
   const { icon, color, label } = configTipo[tipo];
@@ -51,7 +58,9 @@ const ObjetivoCard = ({ objetivo, onEditar, onEliminar, onVer }) => {
           {icon}
           <h2 className={`text-lg font-semibold ${color}`}>{label}</h2>
         </div>
-        <span className="text-xs text-gray-500">{fecha_inicio} → {fecha_fin}</span>
+        <span className="text-xs text-gray-500">
+          {fecha_inicio} → {fecha_fin}
+        </span>
       </div>
 
       <h3 className="text-md font-bold">{titulo}</h3>
@@ -77,7 +86,7 @@ const ObjetivoCard = ({ objetivo, onEditar, onEliminar, onVer }) => {
           </>
         )}
       </div>
-      
+
       <p className="text-xs text-gray-500">Progreso: {Math.round(progreso)}%</p>
 
       <div className="flex justify-end gap-2 pt-2">

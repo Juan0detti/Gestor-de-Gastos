@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { loginUser } from "../../capa_lógica/UsuariosService"
+import { loginUser } from "../../capa_lógica/UsuariosService";
 import "../../styles/Login.css";
 
 export const Login = () => {
@@ -10,7 +10,7 @@ export const Login = () => {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     setErrors({});
     setGeneralError("");
   };

@@ -1,20 +1,24 @@
-import { parseISO, isToday, isYesterday, format, isThisWeek } from 'date-fns';
-import './components_styles/TransaccionesAgrupadasPorFechas.css'
+import { parseISO, isToday, isYesterday, format, isThisWeek } from "date-fns";
+import "./components_styles/TransaccionesAgrupadasPorFechas.css";
 
-export const TransaccionesAgrupadasPorFecha = ({ transactions, handleEditar, handleEliminar }) => {
+export const TransaccionesAgrupadasPorFecha = ({
+  transactions,
+  handleEditar,
+  handleEliminar,
+}) => {
   const grouped = {};
   const fechaMap = {};
 
   const getLabelForfecha = (fecha) => {
-    if (isToday(fecha)) return 'Hoy';
-    if (isYesterday(fecha)) return 'Ayer';
-    if (isThisWeek(fecha)) return 'Esta semana';
-    return format(fecha, 'dd/MM/yyyy');
+    if (isToday(fecha)) return "Hoy";
+    if (isYesterday(fecha)) return "Ayer";
+    if (isThisWeek(fecha)) return "Esta semana";
+    return format(fecha, "dd/MM/yyyy");
   };
 
-  transactions.forEach(tx => {
+  transactions.forEach((tx) => {
     if (!tx?.fecha) {
-      console.warn('Transacción sin fecha válida:', tx);
+      console.warn("Transacción sin fecha válida:", tx);
       return;
     }
 
@@ -22,7 +26,7 @@ export const TransaccionesAgrupadasPorFecha = ({ transactions, handleEditar, han
     try {
       fechaObj = parseISO(tx.fecha);
     } catch (e) {
-      console.error('Fecha inválida para parseISO:', tx.fecha, tx);
+      console.error("Fecha inválida para parseISO:", tx.fecha, tx);
       return;
     }
 
@@ -44,7 +48,9 @@ export const TransaccionesAgrupadasPorFecha = ({ transactions, handleEditar, han
   return (
     <div className="transacciones-agrupadas">
       {!hayTransacciones ? (
-        <p className="mensaje-sin-transacciones">No hay transacciones registradas</p>
+        <p className="mensaje-sin-transacciones">
+          No hay transacciones registradas
+        </p>
       ) : (
         sortedGroups.map(([label, txs]) => (
           <div key={label}>
@@ -53,24 +59,43 @@ export const TransaccionesAgrupadasPorFecha = ({ transactions, handleEditar, han
               {txs
                 .sort((a, b) => new Date(b.fecha) - new Date(a.fecha)) // Ordenar dentro del grupo
                 .map((item, idx) => (
-                  <li key={idx} className="card-transaccion" style={{background: item.tipo==='Ingreso'? '#c8f7cc' : '#f7c8c8'}}>
+                  <li
+                    key={idx}
+                    className="card-transaccion"
+                    style={{
+                      background:
+                        item.tipo === "Ingreso" ? "#c8f7cc" : "#f7c8c8",
+                    }}
+                  >
                     <span className="info">
                       <strong>Nombre:</strong> {item.nombre} <br />
                       <strong>Monto:</strong> ${item.monto} <br />
                       {item.description && (
                         <>
-                          <strong>Descripción:</strong> {item.description} <br />
+                          <strong>Descripción:</strong> {item.description}{" "}
+                          <br />
                         </>
                       )}
                       {item.etiquetas && item.etiquetas.length > 0 && (
                         <>
-                          <strong>Etiquetas:</strong> {item.etiquetas.join(', ')}
+                          <strong>Etiquetas:</strong>{" "}
+                          {item.etiquetas.join(", ")}
                         </>
                       )}
                     </span>
                     <span className="botonesItem">
-                      <button onClick={() => handleEditar?.(item.id)} className="editarBoton">Editar</button>
-                      <button onClick={() => handleEliminar?.(item.id)} className="eliminarBoton">Eliminar</button>
+                      <button
+                        onClick={() => handleEditar?.(item.id)}
+                        className="editarBoton"
+                      >
+                        Editar
+                      </button>
+                      <button
+                        onClick={() => handleEliminar?.(item.id)}
+                        className="eliminarBoton"
+                      >
+                        Eliminar
+                      </button>
                     </span>
                   </li>
                 ))}

@@ -1,46 +1,55 @@
 import { v4 as uuidv4 } from "uuid"; // Si usás uuid para id
 import { getGoals } from "../capa_persistencia/ObjetivosStorage";
 import { getSaves, saveSaves } from "../capa_persistencia/AhorrosStorage";
-import { getBalance } from '../capa_persistencia/SaldoStorage';
-import { actualizarSaldoPorAhorro } from '../capa_lógica/SaldoService'
+import { getBalance } from "../capa_persistencia/SaldoStorage";
+import { actualizarSaldoPorAhorro } from "../capa_lógica/SaldoService";
 
 // Simular persistencia simple con localStorage (puede ser otro medio)
 const STORAGE_KEY = "ahorros";
 
 export default class Ahorro {
-  constructor({ objetivoId = null, monto_objetivo, fecha_fin, nombre}) {
+  constructor({
+    objetivoId = null,
+    monto_objetivo,
+    fecha_fin,
+    nombre,
+    monto_actual,
+  }) {
     this.id = uuidv4();
-    this.nombre = nombre,
-    this.objetivoId = objetivoId || null;
+    this.nombre = nombre;
+    this.objetivoId = objetivoId;
     this.monto_objetivo = parseFloat(monto_objetivo);
     this.fecha_fin = fecha_fin;
-    this.monto_actual = 0;
-    actualizarSaldoPorAhorro(this.id, 0, 'creacion')
+    this.monto_actual = monto_actual;
+
+    const ahorros = getSaves();
+    saveSaves([...ahorros, this]);
+    actualizarSaldoPorAhorro(this.id, 0, "creacion");
   }
 
- static validateData({ monto_objetivo, fecha_fin, nombre }) {
-  const hoy = new Date().toISOString().split("T")[0];
-  const errors = {};
+  static validateData({ monto_objetivo, fecha_fin, nombre }) {
+    const hoy = new Date().toISOString().split("T")[0];
+    const errors = {};
 
-  if (
-    monto_objetivo === undefined ||
-    isNaN(monto_objetivo) ||
-    monto_objetivo < 0
-  ) {
-    errors.monto_objetivo = "El monto objetivo es obligatorio y debe ser un número positivo.";
+    if (
+      monto_objetivo === undefined ||
+      isNaN(monto_objetivo) ||
+      monto_objetivo < 0
+    ) {
+      errors.monto_objetivo =
+        "El monto objetivo es obligatorio y debe ser un número positivo.";
+    }
+
+    if (fecha_fin && fecha_fin <= hoy) {
+      errors.fecha_fin = "La fecha fin debe ser futura.";
+    }
+
+    if (!nombre || nombre.trim() === "") {
+      errors.nombre = "El nombre no debe ser vacío.";
+    }
+
+    return errors;
   }
-
-  if (fecha_fin && fecha_fin <= hoy) {
-    errors.fecha_fin = "La fecha fin debe ser futura.";
-  }
-
-  if (!nombre || nombre.trim() === '') {
-    errors.nombre = "El nombre no debe ser vacío.";
-  }
-
-  return errors;
-}
-
 
   asignarObjetivo(objetivoId) {
     this.objetivoId = objetivoId;
@@ -99,7 +108,7 @@ export default class Ahorro {
       throw new Error("Ahorro no encontrado para editar.");
     }
 
-    actualizarSaldoPorAhorro(this.id, ahorros[index].monto_actual, 'edicion')
+    actualizarSaldoPorAhorro(this.id, ahorros[index].monto_actual, "edicion");
 
     // Editar propiedades
     if (nuevosValores.monto_objetivo !== undefined) {
@@ -132,8 +141,7 @@ export default class Ahorro {
       throw new Error("Ahorro no encontrado para eliminar.");
     }
 
-    actualizarSaldoPorAhorro(id, 0, 'eliminacion');
+    actualizarSaldoPorAhorro(id, 0, "eliminacion");
     saveSaves(nuevosAhorros);
   }
-
 }
