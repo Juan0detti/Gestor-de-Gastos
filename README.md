@@ -7,6 +7,11 @@ Este repositorio contiene el desarrollo del Trabajo Práctico para la materia **
 
 ---
 
+**Planificación**:
+**Documento**: [Planificacion_PERT_CPM.docx.pdf](https://github.com/user-attachments/files/22483336/Planificacion_PERT_CPM.docx.pdf)
+
+**Excel**: [Planificación - Hoja 1.pdf](https://github.com/user-attachments/files/22483273/Planificacion.-.Hoja.1.pdf).
+
 ## 📄 Documentación
 
 ### Primera Iteración  
@@ -56,8 +61,10 @@ El **Gestor de Gastos** es una aplicación que permite al usuario:
 
 ## 🚧 Estado del Proyecto
 
-✅ Iteración 1 — completada  
-🟡 Iteración 2 — completada
+✅ Iteración 1 — Completada  
+✅ Iteración 2 — Completada
+✅ Iteración 3 - Completada
+🟡 Iteración 4 - En proceso
 
 ---
 
