@@ -7,12 +7,17 @@ Este repositorio contiene el desarrollo del Trabajo Práctico para la materia **
 
 ---
 
-**Planificación**:
+
+## 📄 Documentación
+
+ ### Planificación
 **Documento**: [Planificacion_PERT_CPM.docx.pdf](https://github.com/user-attachments/files/22483336/Planificacion_PERT_CPM.docx.pdf)
 
 **Excel**: [Planificación - Hoja 1.pdf](https://github.com/user-attachments/files/22483273/Planificacion.-.Hoja.1.pdf).
 
-## 📄 Documentación
+### Documentación NO Funcionales y Seguridad:
+[Documentación Requerimiento No funcionales y Seguridad.pdf](https://github.com/user-attachments/files/22486157/Documentacion.Requerimiento.No.funcionales.y.Seguridad.pdf)
+
 
 ### Primera Iteración  
 Accedé a la presentación de la documentación de la primera iteración desde el siguiente enlace:  
