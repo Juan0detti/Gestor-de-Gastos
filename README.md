@@ -31,6 +31,13 @@ Accedé a la presentación de la documentación de la primera iteración desde e
 [Documentación 3era Iteración.pdf](https://github.com/user-attachments/files/20981120/Documentacion.3era.Iteracion.pdf)
 - Documentación API Testing: [API Testing.pdf](https://github.com/user-attachments/files/20989486/API.Testing.pdf)
 
+### Actualización 9/10/2025
+- Corrección diagrama de clases y documentación DER:
+   -  Diagrama de clases:
+    <img width="881" height="833" alt="DC-DS-DC drawio" src="https://github.com/user-attachments/assets/f3044bd1-bf2f-4492-ac9c-006cf418035a" />
+   - Diagrama Entidad-Relación:
+    <img width="1291" height="1001" alt="DC-DS-DER drawio" src="https://github.com/user-attachments/assets/f56d1482-c759-49b3-920c-6d7499cc428d" />
+
 ---
 
 ## 🚧 Estado del Proyecto
