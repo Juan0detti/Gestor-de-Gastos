@@ -38,3 +38,13 @@ Accedé a la presentación de la documentación de la primera iteración desde e
 ---
 
 > Este proyecto fue desarrollado con fines académicos en el marco de la materia Diseño de Sistemas.
+
+---
+
+# Documentación de la incorporación de gastos comprometidos en el proyecto de un compañero:
+
+Enlace al documento:
+https://docs.google.com/document/d/1q-UIvmzHgNMvzYQIhHjgajuS5Vt4cyVD/edit?usp=sharing&ouid=104556794169968440044&rtpof=true&sd=true
+
+Enlace a Casos de prueba:
+https://docs.google.com/spreadsheets/d/1FbiT6KIHebmKJuwCcH64led8PaskQAqV/edit?usp=sharing&ouid=104556794169968440044&rtpof=true&sd=true
